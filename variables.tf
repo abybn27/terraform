@@ -1,7 +1,7 @@
 
 variable "instance_type" {}
 
-variable "tag_name" {}
+variable "tag" {}
 
 variable "key_name" { 
     description = " SSH keys to connect to ec2 instance" 
