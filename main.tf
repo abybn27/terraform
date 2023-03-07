@@ -5,9 +5,7 @@ terraform {
       version = "4.57.0"
     }
   }
-
-
-    required_version = ">= v1.3.9"
+     required_version = ">= v1.3.9"
 }
 
 provider "aws" {
@@ -15,11 +13,47 @@ provider "aws" {
   region  = "ap-south-1"
 }
 
-resource "aws_instance" "app_server" {
-  ami           = "ami-09ba48996007c8b50"
-  instance_type = "t2.micro"
+#Create security group with firewall rules
+resource "aws_security_group" "aws_mum-sg-2023" {
+  name        = var.security_group
+  description = "security group for Ec2 instance"
 
-  tags = {
-    Name = "TF1"
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+ ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags= {
+    Name = var.security_group
   }
 }
+
+resource "aws_instance" "myFirstInstance" {
+  ami           = var.ami_id
+  key_name = var.key_name
+  instance_type = var.instance_type
+  vpc_security_group_ids = [aws_security_group.aws_mum-sg-2023.id]
+  tags= {
+    Name = var.tag_name
+  }
+}
+
+# Create Elastic IP address
+/*
+resource "aws_eip" "myFirstInstance" {
+vpc      = true
+  instance = aws_instance.myFirstInstance.id
+tags= {
+    Name = "my_elastic_ip"
+  }
+}
+*/
