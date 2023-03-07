@@ -43,7 +43,7 @@ resource "aws_instance" "myFirstInstance" {
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.aws_mum-sg-2023.id]
   tags= {
-    Name = var.tag_name
+    Name = var.tag
   }
 }
 
