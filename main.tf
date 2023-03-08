@@ -13,47 +13,16 @@ provider "aws" {
   region  = "ap-south-1"
 }
 
-#Create security group with firewall rules
-resource "aws_security_group" "aws_mum-sg-2023" {
-  name        = var.security_group
-  description = "security group for Ec2 instance"
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
- ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags= {
-    Name = var.security_group
-  }
-}
-
-resource "aws_instance" "myFirstInstance" {
+# Create EC2 instance
+resource "aws_instance" "Instance-1" {
   ami           = var.ami_id
-  key_name = var.key_name
+  key_name      = var.key_name
   instance_type = var.instance_type
-  vpc_security_group_ids = [aws_security_group.aws_mum-sg-2023.id]
-  tags= {
-    Name = var.tag
-  }
-}
+  subnet_id     = var.subnet_id
+  security_groups = var.security_group_ids
 
-# Create Elastic IP address
-/*
-resource "aws_eip" "myFirstInstance" {
-vpc      = true
-  instance = aws_instance.myFirstInstance.id
-tags= {
-    Name = "my_elastic_ip"
+ tags= {
+    Name = var.tag_name
   }
 }
-*/
