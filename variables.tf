@@ -10,7 +10,7 @@ variable "key_name" {
 
 variable "security_group" { 
     description = "Name of security group" 
-    default     = "aws_mum-sg-2023" 
+    default     = " " 
 }
 
 variable "ami_id" { 
