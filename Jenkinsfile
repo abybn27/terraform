@@ -5,8 +5,8 @@ pipeline {
       PATH = "/usr/local/bin:$PATH"
 
   parameters {
-    string(name: 'tag', defaultValue: 'aws-mumbai-1', description: 'The AWS Instance Tag')
-    string(name: 'instance_type', defaultValue: 't2.micro', description: 'The EC2 instance type')
+    string(name: 'Environment', defaultValue: 'DEV', description: 'Tag Environment')
+    string(name: 'Instance_Type', defaultValue: 't2.micro', description: 'Instance type')
     
   }
 
@@ -20,7 +20,7 @@ pipeline {
     stage('Deploy Terraform') {
       steps {
         script {
-          def terraform_params = [ '-auto-approve', "-var 'tag=${params.tag}'", "-var 'instance_type=${params.instance_type}'", ]
+          def terraform_params = [ '-auto-approve', "-var 'Environment=${params.Environment}'", "-var 'Instance_Type=${params.Instance_Type}'", ]
           sh "terraform init"
           sh "terraform apply ${terraform_params.join(' ')}"
         }
