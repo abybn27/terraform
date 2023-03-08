@@ -23,6 +23,10 @@ resource "aws_instance" "Instance-1" {
   security_groups = var.security_group_ids
 
  tags= {
-    Name = var.tag
+    Name        = Linux
+    Environment = var.environment
+    Project     = "ERL"
+    Owner       = "SRE"
+    CostCenter  = "ilogistics"
   }
 }
