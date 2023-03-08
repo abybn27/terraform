@@ -3,7 +3,7 @@
 
 variable "instance_type" {}
 
-variable "tag_name" {}
+variable "tag" {}
 
 variable "ami_id" {
   default = "ami-0e07dcaca348a0e68"
