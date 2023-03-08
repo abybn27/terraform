@@ -6,7 +6,7 @@ variable "instance_type" {}
 variable "tag" {}
 
 variable "ami_id" {
-  default = "ami-0e07dcaca348a0e68"
+  default = "ami-0a1b29c03e81896bc"
 }
 
 variable "key_name" {
