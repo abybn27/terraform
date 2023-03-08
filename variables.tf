@@ -1,21 +1,26 @@
 
+# Define variables
+
 variable "instance_type" {}
 
-variable "tag" {}
+variable "tag_name" {}
 
-variable "key_name" { 
-    description = " SSH keys to connect to ec2 instance" 
-    default     =  "coit" 
+variable "ami_id" {
+  default = "ami-0e07dcaca348a0e68"
 }
 
-variable "security_group" { 
-    description = "Name of security group" 
-    default     = " " 
+variable "key_name" {
+  default = "coit"
 }
 
-variable "ami_id" { 
-    description = "AMI for Ubuntu Ec2 instance" 
-    default     = "ami-09ba48996007c8b50" 
+variable "vpc_id" {
+  default = "vpc-0a4daca64625cca01"
 }
 
+variable "subnet_id" {
+  default = "subnet-04ae4d75eeb879e0f"
+}
 
+variable "security_group_ids" {
+  default = ["sg-060c1c8ffe7a61442"]
+}
