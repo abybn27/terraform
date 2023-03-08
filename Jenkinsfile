@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  
+   environment{
+      PATH = "/usr/local/bin:$PATH"
 
   parameters {
     string(name: 'tag', defaultValue: 'aws-mumbai-1', description: 'The AWS Instance Tag')
