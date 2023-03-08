@@ -23,6 +23,6 @@ resource "aws_instance" "Instance-1" {
   security_groups = var.security_group_ids
 
  tags= {
-    Name = var.tag_name
+    Name = var.tag
   }
 }
