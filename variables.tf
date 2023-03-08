@@ -3,8 +3,10 @@
 
 variable "instance_type" {}
 
-variable "tag" {}
+//variable "tag" {}
 
+variable "Environment" { }
+  
 variable "ami_id" {
   default = "ami-0a1b29c03e81896bc"
 }
